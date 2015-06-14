@@ -2,7 +2,9 @@ package com.example.user.testapp;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -25,6 +27,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Created by user on 14.06.2015.
@@ -41,7 +44,12 @@ public class OpenFileDialog extends AlertDialog.Builder{
 
     private static Point getScreenSize(Context context){
         Point screenSize = new Point();
-        getDefaultDisplay(context).getSize(screenSize);
+        //try {
+        //    getDefaultDisplay(context).getSize(screenSize);
+        //}catch(NoSuchMethodError ignore){
+            screenSize.x = getDefaultDisplay(context).getWidth();
+            screenSize.y = getDefaultDisplay(context).getHeight();
+        //}
         return screenSize;
     }
 
@@ -74,7 +82,7 @@ public class OpenFileDialog extends AlertDialog.Builder{
 
     private TextView createTitle(Context context){
         TextView textView = new TextView(context);
-        textView.setTextAppearance(context, android.R.style.TextAppearance_DeviceDefault_DialogWindowTitle);
+        textView.setTextAppearance(context, android.R.style.TextAppearance_DialogWindowTitle);
         int itemHeight = getItemHeight(context);
         textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, itemHeight));
         textView.setMinHeight(itemHeight);
@@ -143,6 +151,32 @@ public class OpenFileDialog extends AlertDialog.Builder{
             File file = getItem(position);
             view.setText(file.getName());
             return view;
+        }
+    }
+
+    public int getTextWidth(String text,Paint paint){
+        Rect bounds = new Rect();
+        paint.getTextBounds(text, 0, text.length(), bounds);
+        return bounds.left + bounds.width() + 80;
+    }
+
+    private void changeTitle(){
+        String titleText = currentPath;
+        int screenWidth = getScreenSize().x;
+        int maxWidth = (int) (screenWidth * 0.99);
+        if (getTextWidth(titleText, title.getPaint()) > maxWidth){
+            while (getTextWidth("..." + titleText, title.getPaint())>maxWidth){
+                int start = titleText.indexOf("/",2);
+                if (start > 0)
+                    titleText = titleText.substring(start);
+                else
+                    titleText = titleText.substring(2);
+
+            }
+            title.setText("..." + titleText);
+        }
+        else {
+            title.setText(titleText);
         }
     }
 }
