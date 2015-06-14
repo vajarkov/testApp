@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_detail"></string>
+    <string name="app_name">Тестирование</string>
+    <string name="bannerText">Тестирование</string>
+    <string name="startButton">НАЧАТЬ</string>
+    <string name="exitButton">ВЫХОД</string>
+</resources>

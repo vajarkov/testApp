@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<questions>
+    <question text="Технические средства определения электрических параметров">
+        <answer bool="true" text="Электроизмерительный прибор" />
+        <answer bool="false" text="Электронный усилитель" />
+        <answer bool="false" text="Электротехнический механизм" />
+        <answer bool="false" text="Защитные средства" />
+        <answer bool="false" text="Компьютер" />
+    </question>
+    <question text="Виды и назначения измерений">
+        <answer bool="true" text="Определение электрических параметров" />
+        <answer bool="false" text="Определение механических параметров" />
+        <answer bool="false" text="Определение физико-технических параметров" />
+        <answer bool="false" text="Определение тепловых параметров" />
+        <answer bool="false" text="Определение мест повреждения" />
+    </question>
+    <question text="Электрическое измерение – это">
+        <answer bool="true" text="Сравнение показания прибора с эталоном измерения" />
+        <answer bool="false" text="Определение технических параметров изделия" />
+        <answer bool="false" text="Использование измерительной техники" />
+        <answer bool="false" text="Нахождение геометрических размеров" />
+        <answer bool="false" text="Процесс изменения параметров" />
+    </question>
+</questions>
