@@ -56,5 +56,7 @@ public class MainActivity extends Activity {
     }
 
     public void LoadXML(View view) {
+        OpenFileDialog fileDialog = new OpenFileDialog(this);
+        fileDialog.show();
     }
 }
