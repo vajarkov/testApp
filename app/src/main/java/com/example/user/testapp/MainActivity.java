@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -56,7 +57,14 @@ public class MainActivity extends Activity {
     }
 
     public void LoadXML(View view) {
-        OpenFileDialog fileDialog = new OpenFileDialog(this);
+        OpenFileDialog fileDialog = new OpenFileDialog(this)
+                .setFilter(".*\\.xml")
+                .setOpenDialogListener(new OpenFileDialog.OpenDialogListener() {
+                    @Override
+                    public void OnSelectedFile(String fileName) {
+                        Toast.makeText(getApplicationContext(),fileName, Toast.LENGTH_LONG).show();
+                    }
+                });
         fileDialog.show();
     }
 }
