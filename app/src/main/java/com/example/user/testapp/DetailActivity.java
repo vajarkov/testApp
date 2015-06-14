@@ -35,7 +35,7 @@ public class DetailActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        EditText score = (EditText)findViewById(R.id.score);
+        TextView score = (TextView)findViewById(R.id.score);
         score.setText("Правильные ответы : "+rightAnswer);
 
         fillButtonArray();
@@ -93,7 +93,7 @@ public class DetailActivity extends Activity {
 
     public void OnClick(View view){
         Button button = (Button) view;
-        EditText score = (EditText)findViewById(R.id.score);
+        TextView score = (TextView)findViewById(R.id.score);
         if (questAnswerses.get(nQuest).answers.get(button.getText().toString())){
             rightAnswer++;
             score.setText("Правильные ответы : "+rightAnswer);

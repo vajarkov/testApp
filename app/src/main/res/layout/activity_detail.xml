@@ -5,14 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <EditText
+    <TextView
         android:id="@+id/score"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:editable="false"
-        android:focusable="false"
-        android:background="#000000"
-        android:textColor="#FFFFFF"
         />
     <TextView
         android:id="@+id/questView"
