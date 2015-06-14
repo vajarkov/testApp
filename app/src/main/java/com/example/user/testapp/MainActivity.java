@@ -54,4 +54,7 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
         startActivity(intent);
     }
+
+    public void LoadXML(View view) {
+    }
 }

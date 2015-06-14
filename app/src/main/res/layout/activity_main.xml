@@ -28,4 +28,11 @@
         android:layout_height="50dp"
         android:text="@string/exitButton"/>
 
+    <Button
+        android:id="@+id/btLoad"
+        android:text="Загрузить тест"
+        android:onClick="LoadXML"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
 </LinearLayout>
