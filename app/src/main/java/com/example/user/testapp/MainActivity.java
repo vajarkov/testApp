@@ -6,10 +6,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class MainActivity extends Activity {
@@ -75,6 +74,20 @@ public class MainActivity extends Activity {
         //alternatively you can set file filter
         intent.putExtra(FileDialog.FORMAT_FILTER, new String[] { "xml" });
 
-        startActivityForResult(intent, REQUEST_SAVE);
+        startActivityForResult(intent, RESULT_OK);
+    }
+
+    public synchronized void onActivityResult(final int requestCode,
+                                              int resultCode, final Intent data) {
+
+        if (resultCode == Activity.RESULT_OK) {
+
+            if (requestCode == RESULT_OK) {
+                System.out.println("Loading...");
+            }
+
+            String filePath = data.getStringExtra(FileDialog.RESULT_PATH);
+        }
+
     }
 }
