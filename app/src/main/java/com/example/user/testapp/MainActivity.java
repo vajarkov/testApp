@@ -11,6 +11,7 @@ import java.io.*;
 
 
 public class MainActivity extends Activity {
+    private final int REQUEST_LOAD = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,22 +76,19 @@ public class MainActivity extends Activity {
         //alternatively you can set file filter
         intent.putExtra(FileDialog.FORMAT_FILTER, new String[] { "xml" });
 
-        startActivityForResult(intent, RESULT_OK);
+        startActivityForResult(intent, REQUEST_LOAD);
     }
 
+    @Override
     public synchronized void onActivityResult(final int requestCode,
                                               int resultCode, final Intent data) {
         System.out.println(requestCode);
         System.out.println(resultCode);
         if (resultCode == Activity.RESULT_OK) {
-
-            if (requestCode == RESULT_OK) {
-                System.out.println("Loading...");
-            }
-
             String filePath = data.getStringExtra(FileDialog.RESULT_PATH);
             AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-            alert.setMessage(filePath);
+            alert.setMessage(filePath).setNegativeButton("OK",null);
+            alert.show();
         }
 
     }
