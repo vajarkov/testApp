@@ -79,7 +79,8 @@ public class MainActivity extends Activity {
 
     public synchronized void onActivityResult(final int requestCode,
                                               int resultCode, final Intent data) {
-
+        System.out.println(requestCode);
+        System.out.println(resultCode);
         if (resultCode == Activity.RESULT_OK) {
 
             if (requestCode == RESULT_OK) {
