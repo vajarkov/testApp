@@ -131,17 +131,7 @@ public class OpenFileDialog extends AlertDialog.Builder{
         return super.show();
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        TextView view = (TextView) context.getView(position, convertView, parent);
-        File file = context.getItem(position);
-        view.setText(file.getName());
-        if (selectedIndex == position)
-            view.setBackgroundColor(context.getResources().getColor(android.R.color.background_light));
-        else
-            view.setBackgroundColor(context.getResources().getColor(android.R.color.background_dark));
-        return view;
-    }
+
 
     private int getItemHeight(Context context){
         TypedValue value = new TypedValue();
@@ -164,7 +154,7 @@ public class OpenFileDialog extends AlertDialog.Builder{
 
     private TextView createTitle(Context context){
         TextView textView = createTextView(context,android.R.style.TextAppearance_DialogWindowTitle);
-        return textView
+        return textView;
     }
 
     private TextView createBackItem(final Context context){
@@ -276,15 +266,17 @@ public class OpenFileDialog extends AlertDialog.Builder{
         }
     }
 
-    public OpenFileDialog setFilter(final String filter){
+    public OpenFileDialog setFilter(final String filter) {
         filenameFilter = new FilenameFilter() {
+
             @Override
-            public boolean accept(File file, String filename) {
-                File tempFile = new File(String.format("%s/%s", file.getPath(), filename));
+            public boolean accept(File file, String fileName) {
+                File tempFile = new File(String.format("%s/%s", file.getPath(), fileName));
                 if (tempFile.isFile())
                     return tempFile.getName().matches(filter);
                 return true;
             }
-        }
+        };
+        return this;
     }
 }
