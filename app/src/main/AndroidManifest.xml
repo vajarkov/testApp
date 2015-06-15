@@ -24,8 +24,7 @@
         </activity>
         <activity
             android:name=".FileDialog"
-            android:configChanges="orientation"
-            android:screenOrientation="reverseLandscape" />
+             />
     </application>
 
 </manifest>

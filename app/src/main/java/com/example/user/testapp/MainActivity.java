@@ -1,14 +1,13 @@
 package com.example.user.testapp;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.*;
 
 
 public class MainActivity extends Activity {
@@ -69,7 +68,9 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(getBaseContext(), FileDialog.class);
         intent.putExtra(FileDialog.START_PATH, "/sdcard");
         //can user select directories or not
-        intent.putExtra(FileDialog.CAN_SELECT_DIR, true);
+        intent.putExtra(FileDialog.CAN_SELECT_DIR, false);
+        intent.putExtra(FileDialog.SELECTION_MODE, SelectionMode.MODE_OPEN);
+        //
 
         //alternatively you can set file filter
         intent.putExtra(FileDialog.FORMAT_FILTER, new String[] { "xml" });
@@ -88,6 +89,8 @@ public class MainActivity extends Activity {
             }
 
             String filePath = data.getStringExtra(FileDialog.RESULT_PATH);
+            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+            alert.setMessage(filePath);
         }
 
     }
