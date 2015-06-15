@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
     }
 
     public void LoadXML(View view) {
-        OpenFileDialog fileDialog = new OpenFileDialog(this)
+        /*OpenFileDialog fileDialog = new OpenFileDialog(this)
                 .setFilter(".*\\.xml")
                 .setOpenDialogListener(new OpenFileDialog.OpenDialogListener() {
                     @Override
@@ -65,6 +65,16 @@ public class MainActivity extends Activity {
                         Toast.makeText(getApplicationContext(),fileName, Toast.LENGTH_LONG).show();
                     }
                 });
-        fileDialog.show();
+        fileDialog.show();*/
+
+        Intent intent = new Intent(getBaseContext(), FileDialog.class);
+        intent.putExtra(FileDialog.START_PATH, "/sdcard");
+        //can user select directories or not
+        intent.putExtra(FileDialog.CAN_SELECT_DIR, true);
+
+        //alternatively you can set file filter
+        intent.putExtra(FileDialog.FORMAT_FILTER, new String[] { "xml" });
+
+        startActivityForResult(intent, REQUEST_SAVE);
     }
 }
