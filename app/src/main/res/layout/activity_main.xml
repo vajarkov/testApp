@@ -14,7 +14,7 @@
         android:text="@string/bannerText"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/startButton"
         android:onClick="startClicked"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -22,18 +22,23 @@
         android:text="@string/startButton"/>
 
     <Button
-        android:id="@+id/btLoad"
+        android:id="@+id/loadButton"
         android:text="Загрузить тест"
         android:onClick="LoadXML"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/exitButton"
         android:onClick="exitClicked"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/exitButton"/>
+
+    <TextView
+        android:id="@+id/tvXMLpath"
+        android:layout_width="match_parent"
+        android:layout_height="35dp" />
 
 
 

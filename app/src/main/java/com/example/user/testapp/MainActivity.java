@@ -7,11 +7,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
 import java.io.*;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
     private final int REQUEST_LOAD = 1;
+    private String pathXML = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,32 +55,24 @@ public class MainActivity extends Activity {
 
     public void startClicked(View view) {
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        intent.putExtra("xml_path",pathXML);
         startActivity(intent);
     }
 
     public void LoadXML(View view) {
-        /*OpenFileDialog fileDialog = new OpenFileDialog(this)
-                .setFilter(".*\\.xml")
-                .setOpenDialogListener(new OpenFileDialog.OpenDialogListener() {
-                    @Override
-                    public void OnSelectedFile(String fileName) {
-                        Toast.makeText(getApplicationContext(),fileName, Toast.LENGTH_LONG).show();
-                    }
-                });
-        fileDialog.show();*/
 
         Intent intent = new Intent(getBaseContext(), FileDialog.class);
         intent.putExtra(FileDialog.START_PATH, "/sdcard");
-        //can user select directories or not
+
         intent.putExtra(FileDialog.CAN_SELECT_DIR, false);
         intent.putExtra(FileDialog.SELECTION_MODE, SelectionMode.MODE_OPEN);
-        //
 
-        //alternatively you can set file filter
         intent.putExtra(FileDialog.FORMAT_FILTER, new String[] { "xml" });
 
         startActivityForResult(intent, REQUEST_LOAD);
     }
+
+
 
     @Override
     public synchronized void onActivityResult(final int requestCode,
@@ -85,10 +80,12 @@ public class MainActivity extends Activity {
         System.out.println(requestCode);
         System.out.println(resultCode);
         if (resultCode == Activity.RESULT_OK) {
-            String filePath = data.getStringExtra(FileDialog.RESULT_PATH);
-            AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-            alert.setMessage(filePath).setNegativeButton("OK",null);
-            alert.show();
+            pathXML = data.getStringExtra(FileDialog.RESULT_PATH);
+            TextView tvXML = (TextView) findViewById(R.id.tvXMLpath);
+            tvXML.setText(pathXML);
+            //AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+            //alert.setMessage(filePath).setNegativeButton("OK",null);
+            //alert.show();
         }
 
     }

@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        Vadim_Zharkov {
+            keyAlias 'Vadim_Zharkov'
+            keyPassword 'password'
+            storeFile file('C:/Program Files/Java/jdk1.8.0_45/jre/bin/Vadim_Zharkov')
+            storePassword 'password'
+        }
+    }
     compileSdkVersion 10
     buildToolsVersion '19.1.0'
     defaultConfig {
@@ -9,6 +17,7 @@ android {
         targetSdkVersion 10
         versionCode 1
         versionName "1.0"
+        signingConfig signingConfigs.Vadim_Zharkov
     }
     buildTypes {
         release {
@@ -17,6 +26,10 @@ android {
         }
     }
     productFlavors {
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 
